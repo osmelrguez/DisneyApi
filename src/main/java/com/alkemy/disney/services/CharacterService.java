@@ -83,14 +83,10 @@ public class CharacterService {
         characterRepository.save(charModel);
         return charModel;
     }
-    public boolean deleteCharacter(long id){
+    public void deleteCharacter(long id) {
         if (!characterRepository.existsById(id)) {
             throw new NotFoundException("Character not found");
         }
-        characterRepository.findById(id).map(characterModel -> {
-            characterRepository.deleteById(id);
-            return true;
-        });
-        return false;
+        characterRepository.deleteById(id);
     }
 }

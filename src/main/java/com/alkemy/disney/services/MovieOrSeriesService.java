@@ -1,5 +1,6 @@
 package com.alkemy.disney.services;
 
+import com.alkemy.disney.exceptions.NotFoundException;
 import com.alkemy.disney.models.CharacterModel;
 import com.alkemy.disney.models.MovieOrSeries;
 import com.alkemy.disney.repositories.CharacterRepository;
@@ -67,11 +68,10 @@ public class MovieOrSeriesService {
         movieOrSeriesRepository.save(movie);
         return movie;
     }
-    public boolean deleteMovie(long id){
-        movieOrSeriesRepository.findById(id).map(movieOrSeries -> {
-            movieOrSeriesRepository.deleteById(id);
-            return true;
-        });
-        return false;
+    public void deleteMovie(long id){
+        if (!movieOrSeriesRepository.existsById(id)) {
+            throw new NotFoundException("Movie not found");
+        }
+        movieOrSeriesRepository.deleteById(id);
     }
 }

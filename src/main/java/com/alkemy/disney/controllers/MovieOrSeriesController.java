@@ -61,12 +61,9 @@ public class MovieOrSeriesController {
     }
 
     @DeleteMapping(value = "{id}")
-    public ResponseEntity<MovieOrSeries> deleteMovie(@PathVariable long id){
-        if(movieOrSeriesService.deleteMovie(id)){
-            return new ResponseEntity<>(HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<?> deleteMovie(@PathVariable long id){
+        movieOrSeriesService.deleteMovie(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Movie deleted successfully");
     }
 
     @DeleteMapping(value = "{msId}/characters/{chId}")
