@@ -1,6 +1,5 @@
 package com.alkemy.disney.controllers;
 
-import com.alkemy.disney.models.CharacterModel;
 import com.alkemy.disney.models.MovieOrSeries;
 import com.alkemy.disney.services.CharacterService;
 import com.alkemy.disney.services.MovieOrSeriesService;
@@ -17,8 +16,6 @@ public class MovieOrSeriesController {
 
     @Autowired
     MovieOrSeriesService movieOrSeriesService;
-    @Autowired
-    CharacterService characterService;
 
     @GetMapping
     public ResponseEntity<List<MovieOrSeries>> getMoviesList(){
