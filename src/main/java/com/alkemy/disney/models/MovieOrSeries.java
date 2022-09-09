@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.io.File;
 import java.io.Serializable;
 import java.util.*;
@@ -20,13 +22,18 @@ public class MovieOrSeries implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ms_id", nullable = false, unique = true)
     private long msId;
+
     @Column(name = "msImg")
     private File msImg;
+
+    @NotBlank(message = "Title is Required")
     @Column(name = "msTitle")
     private String msTitle;
+
     @Column(name = "msDate")
     private Date msDate;
 
+    @Size(min = 1, max = 5)
     @Column(name = "classification")
     private int classification;
 
