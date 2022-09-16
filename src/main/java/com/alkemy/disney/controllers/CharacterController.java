@@ -67,9 +67,9 @@ public class CharacterController {
         return new ResponseEntity<>(characterService.associateMovie(chId, msId), HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<CharacterModel> updateCharacter(@RequestBody CharacterModel characterModel){
-        return new ResponseEntity<>(characterService.updateCharacter(characterModel), HttpStatus.NO_CONTENT);
+    @PutMapping(value = "{id}")
+    public ResponseEntity<CharacterModel> updateCharacter(@PathVariable long id, @RequestBody CharacterModel characterModel){
+        return new ResponseEntity<>(characterService.updateCharacter(id, characterModel), HttpStatus.NO_CONTENT);
     }
 
     @DeleteMapping(value = "{id}")

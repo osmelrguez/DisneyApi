@@ -57,7 +57,11 @@ public class CharacterService {
         return characterRepository.save(character);
     }
 
-    public CharacterModel updateCharacter(@NotNull CharacterModel characterModel){
+    public CharacterModel updateCharacter(long id, @NotNull CharacterModel characterModel){
+
+        if(!characterRepository.existsById(id)){
+            throw new NotFoundException("Character not found");
+        }
         CharacterModel characterMod = new CharacterModel();
 
         characterMod.setChName(characterModel.getChName());
